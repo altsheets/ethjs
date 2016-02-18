@@ -1,0 +1,2 @@
+gsoil attach
+pause
