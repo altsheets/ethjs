@@ -1,5 +1,5 @@
 # ethjsre
-Useful scripts for the JSRE console of Ethereum clones. To make my life easier on the commandline. 
+Useful scripts for the JSRE console of Ethereum (ETH) clones (SOIL, EXP). To make my life easier on the commandline. 
 
 ### Preparations (once):
 
