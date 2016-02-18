@@ -15,7 +15,7 @@
 //     gshift attach
 
 
-var version=        "v0.3.13";
+var version=        "v0.3.14";
 
 
 var fee=0.00105; // hardcoded, for now.
@@ -30,31 +30,32 @@ var currency, blockchainApi, blockchainApiName;
 
 if (startswith(web3.version.client,      "Geth"))  currency='ether'
 else if (startswith(web3.version.client, "Gsoil")) currency='soil'
-else if (startswith(web3.version.client, "Gexp")) currency='expanse'
+else if (startswith(web3.version.client, "Gexp"))  currency='expanse'
 else if (startswith(web3.version.client, "SHIFT")) currency='shf'
 else throw welcome + " Unknown currency, please contact me ("+HOMEPAGE+"). Ending now.";
+
+console.log(welcome+" Identified platform as '"+currency+"', good. Type 'help()' now.")
+
+////////////////////////// each platform is a bit different:
 
 var hasFn_syncing=true; // flag if function exists (in SHF doesn't)
 
 if (currency=='ether' || currency=='soil') {
 	blockchainApi=eth;
-	blockchainApiName="eth";
+	blockchainApiName ="eth";
 	blockchainApi2Name="eth";
 }
 if (currency=='expanse') {
 	blockchainApi=web3.exp;
-	blockchainApiName="web3.exp";
-	blockchainApi2Name="exp";
+	blockchainApiName ="web3.exp";
+	blockchainApi2Name="exp";     // some functions are over here
 }
 if (currency=='shf') {
 	blockchainApi=web3.eth;
-	blockchainApiName="web3.eth";
-	blockchainApi2Name="shf";   // unfortunately, some functions are over here
-	hasFn_syncing=false;        // and .syncing does not exist at all?
+	blockchainApiName ="web3.eth";
+	blockchainApi2Name="shf";     // some functions are over here
+	hasFn_syncing=false;          // and .syncing does not exist at all?
 }
-
-console.log(welcome+" Identified currency as '"+currency+"', good. Type 'help()' now.")
-
 
 /////////////////////////// yes, donate. Thanks.
 
@@ -68,7 +69,7 @@ altsheets['shf']="0xf8e9d1f0967b4da8422b8f866920758bbac48f2a";
 
 function failIfShf(){
 	if (currency=="shf") throw "Not yet working for SHF. Wait for next version."
-	// SHF has redefined fromWei and toWei - what else?
+	// SHF has redefined fromWei and toWei - needs trying out.
 }
 	
 function showAllBalances() {
@@ -102,7 +103,7 @@ function send(addrFrom, addrTo, amount) {
 	return result;
 };
 
-///////// statusLoop() is especially useful while syncing:
+///////// show situation, in one line:
 
 function epoch2human(epoch){
 	// timestamp to human readable time
@@ -130,6 +131,8 @@ function status(){
 	mystring = p+" peers. Block "+n+" of "+h+". Date "+ts+". Blocktime "+BT+"s. Difficulty ~"+d+" billion.";
 	return mystring;
 }
+
+///////// statusLoop() is especially useful while syncing:
 
 function sleep( sleepDuration ){
 	// the given sleep function didn't work for me, so ...
