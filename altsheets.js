@@ -15,7 +15,7 @@
 //     gshift attach
 
 
-var version=        "v0.3.14";
+var version=        "v0.3.15";
 
 
 var fee=0.00105; // hardcoded, for now.
@@ -28,10 +28,11 @@ function contains(string,searchfor) { return string.indexOf(searchfor) > -1 }
 function startswith(string,searchfor) { return string.indexOf(searchfor) == 0 }
 var currency, blockchainApi, blockchainApiName;
 
-if (startswith(web3.version.client,      "Geth"))  currency='ether'
-else if (startswith(web3.version.client, "Gsoil")) currency='soil'
-else if (startswith(web3.version.client, "Gexp"))  currency='expanse'
-else if (startswith(web3.version.client, "SHIFT")) currency='shf'
+if      (web3.version.node   && startswith(web3.version.node,   "Geth"))  currency='ether'
+else if (web3.version.client && startswith(web3.version.client, "Geth"))  currency='ether'
+else if (web3.version.client && startswith(web3.version.client, "Gsoil")) currency='soil'
+else if (web3.version.client && startswith(web3.version.client, "Gexp"))  currency='expanse'
+else if (web3.version.client && startswith(web3.version.client, "SHIFT")) currency='shf'
 else throw welcome + " Unknown currency, please contact me ("+HOMEPAGE+"). Ending now.";
 
 console.log(welcome+" Identified platform as '"+currency+"', good. Type 'help()' now.")
