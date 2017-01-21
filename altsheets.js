@@ -15,7 +15,7 @@
 //     gshift attach
 
 
-var version=        "v0.3.15";
+var version=        "v0.3.16";
 
 
 var fee=0.00105; // hardcoded, for now.
