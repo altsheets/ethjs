@@ -3,7 +3,7 @@
 // for easier use of commandline
 // of ethereum clones.
 //
-// (c) 2016 AltSheets Dev
+// (c) 2016-2018 AltSheets Dev
 //
 //     gsoil attach
 //     loadScript("altsheets.js")
@@ -15,7 +15,7 @@
 //     gshift attach
 
 
-var version=        "v0.3.16";
+var version=        "v0.3.18";
 
 
 var fee=0.00105; // hardcoded, for now.
@@ -31,6 +31,7 @@ var currency, blockchainApi, blockchainApiName;
 if      (web3.version.node   && startswith(web3.version.node,   "Geth"))  currency='ether'
 else if (web3.version.client && startswith(web3.version.client, "Geth"))  currency='ether'
 else if (web3.version.client && startswith(web3.version.client, "Gsoil")) currency='soil'
+else if (web3.version.node   && startswith(web3.version.node,   "Gsoil")) currency='ether'
 else if (web3.version.client && startswith(web3.version.client, "Gexp"))  currency='expanse'
 else if (web3.version.client && startswith(web3.version.client, "SHIFT")) currency='shf'
 else throw welcome + " Unknown currency, please contact me ("+HOMEPAGE+"). Ending now.";
@@ -178,5 +179,4 @@ function help() {
 	console.log("--- version "+version+" --- perhaps newer at "+HOMEPAGE);
 	return "please reward altsheets: ["+currency+"] " + altsheets[currency];
 }
-
 
