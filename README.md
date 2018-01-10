@@ -31,6 +31,10 @@ Start the JSRE console
 
 ### History 
 
+v0.3.18:
+* adapted [altsheets.js](altsheets.js) to new soil code of MMF
+* only small change, internal currency name is not soil but ether now
+
 v0.3.16:
 * BAT files for easier handling on windows - copy them all into folder where gsoil.exe lives
   * gsoil-start-with-addpeers.bat - starts the node, and adds peernodes
